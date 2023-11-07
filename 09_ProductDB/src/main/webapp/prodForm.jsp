@@ -5,6 +5,9 @@ request.getMethod() :
 <%=request.getMethod()%>
 <br>
 
+<%
+	application.setAttribute("flag", false);
+%>
 
 <h3>상품 정보:</h3>
 

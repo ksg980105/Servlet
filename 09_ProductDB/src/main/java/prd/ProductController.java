@@ -5,6 +5,7 @@ import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletConfig;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -21,7 +22,8 @@ public class ProductController extends HttpServlet {
 	private String user;
 	private String password;
 	ProductDao dao;
-
+	ServletContext sc;
+	
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
@@ -40,6 +42,7 @@ public class ProductController extends HttpServlet {
 		password = config.getInitParameter("password");
 
 		dao = new ProductDao(driver,url,user,password);
+		sc = config.getServletContext();
 	}
 
 	/**
@@ -76,13 +79,21 @@ public class ProductController extends HttpServlet {
 		String viewPage = null;
 
 		if(command.equals("/insert.prd")) {
-			ProductBean pb = new ProductBean();
-			pb.setName(request.getParameter("name"));
-			pb.setPrice(Integer.parseInt(request.getParameter("price")));
+			boolean flag =(Boolean) sc.getAttribute("flag");
+			System.out.println("flag: " + flag);
 			
-			int cnt = dao.insertData(pb);
-			System.out.println("cnt:" + cnt);
-			viewPage = "/select.prd";
+			if(flag == false) {
+			
+				ProductBean pb = new ProductBean();
+				pb.setName(request.getParameter("name"));
+				pb.setPrice(Integer.parseInt(request.getParameter("price")));
+				
+				int cnt = dao.insertData(pb);
+				sc.setAttribute("flag", true);
+				viewPage = "/select.prd";
+			}else {
+				viewPage = "/select.prd";
+			}
 			
 		}else if(command.equals("/select.prd")) {
 			viewPage = "prodList.jsp";
