@@ -1,0 +1,32 @@
+drop sequence seqmy ;
+create sequence seqmy 
+	start with 1
+	minvalue 1
+	increment by 1
+	nocache;
+	
+
+drop table survey purge ;
+create table survey(
+	no number primary key,
+	name varchar2(50),
+	company varchar2(50),
+	email varchar2(50),
+	satisfaction varchar2(50),
+	part varchar2(100),
+	howto varchar2(50),
+	agree number
+) ;
+insert into survey
+values(seqmy.nextval,'길동','현대','abc@daum.net','만족','서블릿','우편',1);
+commit ;
+
+col no for 999
+col company for a6
+col email for a15
+col satisfaction for a10
+col part for a15
+col part for a15
+col howto for a5
+col agree for 99
+select * from survey;
