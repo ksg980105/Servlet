@@ -104,10 +104,14 @@ public class BoardFrontController extends HttpServlet {
 			bCommand = new BUpdateCommand();
 			bCommand.execute(request, response);
 
-			viewPage = "/select.bd";
+			if((Boolean)request.getAttribute("match")==false) {
+				return;
+			}else {
+				viewPage = "/select.bd";
+			}
 			
 		} else if (command.equals("/deleteForm.bd")) {
-			bCommand = new MDeleteFormCommand();
+			bCommand = new BDeleteFormCommand();
 			bCommand.execute(request, response);
 
 			viewPage = "deleteForm.jsp";

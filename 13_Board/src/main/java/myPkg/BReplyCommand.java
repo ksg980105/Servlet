@@ -24,7 +24,7 @@ public class BReplyCommand implements BoardCommand{
 		
 		bb.setRef(Integer.parseInt(request.getParameter("ref")));
 		bb.setRe_step(Integer.parseInt(request.getParameter("re_step")));
-		bb.setRe_level(Integer.parseInt(request.getParameter("ref")));
+		bb.setRe_level(Integer.parseInt(request.getParameter("re_level")));
 	    
 	    dao.replyArticle(bb);
 	    

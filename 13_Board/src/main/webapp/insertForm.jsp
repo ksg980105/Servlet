@@ -16,8 +16,8 @@
 <script type="text/javascript" src = "script.js"></script>
 
 <%
-String pageNum = request.getParameter("pageNum");
-application.setAttribute("flag", false);
+	String pageNum = request.getParameter("pageNum");
+	application.setAttribute("flag", false);
 %>
 
 <body bgcolor="<%= bodyback_c %>">

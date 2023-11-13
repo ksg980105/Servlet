@@ -50,12 +50,12 @@
          <td>
          	<c:set var="wid" value="0"/>
          	<c:if test="${bb.re_level>0}">
-         		<c:set var="wid" value="${bb.re_level}"/>
+         		<c:set var="wid" value="${bb.re_level*20}"/>
          		<img src="images/level.gif" style="opacity: 0;" width="${ wid }" height = "30">
                 <img src="images/re.gif">
          	</c:if>
          <a href = "content.bd?num=${bb.num}&pageNum=${currentPage}">
-         ${bb.subject}
+        	 ${bb.subject}
          </a>
          <c:if test="${bb.readcount>=10}">
          	<img src = "images/hot.gif">
@@ -70,6 +70,8 @@
    </table>
    </c:otherwise>
    </c:choose>
+   
+   <!-- 페이지설정 -->
    
    <c:if test="${ count>0 }">
 		<c:if test="${endPage>pageCount}">
